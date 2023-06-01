@@ -21,7 +21,7 @@ export default class NewBill {
     const filePath = e.target.value.split(/\\/g)
     const fileName = filePath[filePath.length - 1]
     //on doit faire une condition ici 
-    if (fileName && (fileName.toLowerCase().includes(".jpeg") || fileName.toLowerCase().includes(".jpg") || fileName.toLowerCase().includes(".png"))) {
+    if (file && (file.type.toLowerCase().includes("jpeg") || file.type.toLowerCase().includes("jpg") || file.type.toLowerCase().includes("png"))) {
       const formData = new FormData()
       const email = JSON.parse(localStorage.getItem("user")).email
       formData.append('file', file)
@@ -42,8 +42,10 @@ export default class NewBill {
         }).catch(error => console.error(error))
     } else {
       this.document.querySelector(`input[data-testid="file"]`).value = ""
+      this.document.querySelector(`input[data-testid="file"]`).files[0] = null
 
     }
+
 
   }
   handleSubmit = e => {

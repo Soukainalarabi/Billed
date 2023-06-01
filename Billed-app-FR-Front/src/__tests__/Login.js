@@ -221,6 +221,7 @@ describe("Given that I am a user on login page", () => {
           status: "connected",
         })
       );
+
       // expect(window.console.log(`User with ${user.email} is created`)).toHaveBeenCalledWith()
 
     });
