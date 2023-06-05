@@ -10,7 +10,7 @@ import { localStorageMock } from "../__mocks__/localStorage.js";
 import { ROUTES } from "../constants/routes"
 import router from "../app/Router.js";
 import { ROUTES_PATH } from "../constants/routes.js";
-
+jest.mock("../app/store", () => mockStore)
 
 
 
@@ -113,6 +113,8 @@ describe("Given I am connected as an employee", () => {
       expect(fileInput.files[0]).toBeNull()
     })
     test("tester handleSubmit ", async () => {
+
+      const spy = jest.spyOn(mockStore, "bills")
       const html = NewBillUI()
       document.body.innerHTML = html
       const onNavigate = (pathname) => {
@@ -128,8 +130,8 @@ describe("Given I am connected as an employee", () => {
       router()
       window.onNavigate(ROUTES_PATH.NewBill)
       const form = document.querySelector(`form[data-testid="form-new-bill"]`)
-      fireEvent.submit(form, { target: { value: form.email } })
-      expect(form.value).not.toBeNull()
+      fireEvent.submit(form, { target: form })
+      expect(spy).toHaveBeenCalled()
 
 
 

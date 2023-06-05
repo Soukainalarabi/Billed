@@ -17,7 +17,7 @@ jest.mock("../app/store", () => mockStore)
 
 
 describe('Given I am connected as an Admin', () => {
- 
+
   describe('When I am on Dashboard page,  there are bills', () => {
     test('Then show Bills as cards', () => {
       document.body.innerHTML = card(bills[0])
@@ -158,7 +158,6 @@ describe('Given I am connected as an Admin', () => {
       // expect(handleShowTickets1).toHaveBeenCalled()
       // expect(screen.getByTestId(`open-bill47qAXb6fIm2zOKkLzMro`)).toBeTruthy()
       // const iconEdit = screen.getByTestId('open-bill47qAXb6fIm2zOKkLzMro')
-      // userEvent.click(iconEdit)
       // userEvent.click(iconEdit)
       const bigBilledIcon = screen.queryByTestId("big-billed-icon")
       expect(bigBilledIcon).toBeTruthy()
@@ -305,7 +304,6 @@ describe("Given I am a user connected as Admin", () => {
       })
 
       test("fetches messages from an API and fails with 500 message error", async () => {
-
         mockStore.bills.mockImplementationOnce(() => {
           return {
             list: () => {
@@ -313,7 +311,6 @@ describe("Given I am a user connected as Admin", () => {
             }
           }
         })
-
         window.onNavigate(ROUTES_PATH.Dashboard)
         await new Promise(process.nextTick);
         const message = await screen.getByText(/Erreur 500/)
