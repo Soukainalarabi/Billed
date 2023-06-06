@@ -81,8 +81,10 @@ describe("Given that I am a user on login page", () => {
 
       let PREVIOUS_LOCATION = "";
 
-      const store = jest.fn();
-
+      // const store = jest.fn(); il retourne une fonction vide qui n'est pas une instance de la classe store
+      const store = {
+        login: (arg) => Promise.resolve(arg)
+      };
       const login = new Login({
         document,
         localStorage: window.localStorage,
@@ -92,12 +94,11 @@ describe("Given that I am a user on login page", () => {
       });
 
       const handleSubmit = jest.fn(login.handleSubmitEmployee);
-      login.login = jest.fn().mockResolvedValue({});
+      // login.login = jest.fn().mockResolvedValue({});
       form.addEventListener("submit", handleSubmit);
       fireEvent.submit(form);
-      // console.log(`User with ${user.email} is created`)
       expect(handleSubmit).toHaveBeenCalled();
-      // expect(window.localStorage.setItem).toHaveBeenCalled();
+      expect(window.localStorage.setItem).toHaveBeenCalled();
       expect(window.localStorage.setItem).toHaveBeenCalledWith(
         "user",
         JSON.stringify({
@@ -211,7 +212,7 @@ describe("Given that I am a user on login page", () => {
       form.addEventListener("submit", handleSubmit);
       fireEvent.submit(form);
       expect(handleSubmit).toHaveBeenCalled();
-      // expect(window.localStorage.setItem).toHaveBeenCalled();
+      expect(window.localStorage.setItem).toHaveBeenCalled();
       expect(window.localStorage.setItem).toHaveBeenCalledWith(
         "user",
         JSON.stringify({
@@ -222,7 +223,6 @@ describe("Given that I am a user on login page", () => {
         })
       );
 
-      // expect(window.console.log(`User with ${user.email} is created`)).toHaveBeenCalledWith()
 
     });
 
