@@ -20,7 +20,7 @@ export default class NewBill {
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
     const filePath = e.target.value.split(/\\/g)
     const fileName = filePath[filePath.length - 1]
-    //on doit faire une condition ici 
+    //la condition justificatifs
     if (file && (file.type.toLowerCase().includes("jpeg") || file.type.toLowerCase().includes("jpg") || file.type.toLowerCase().includes("png"))) {
       const formData = new FormData()
       const email = JSON.parse(localStorage.getItem("user")).email

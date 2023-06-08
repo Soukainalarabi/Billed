@@ -51,7 +51,6 @@ describe("Given I am connected as an employee", () => {
       expect(titleNewBill).toBe("Mes notes de frais")
     })
 
-    ////modifier ce test ligne 34
     test("quand on clique sur l'icon eye la modale sera afficher", async () => {
       document.body.innerHTML = BillsUI({ data: bills })
       Object.defineProperty(window, 'localStorage', { value: localStorageMock })

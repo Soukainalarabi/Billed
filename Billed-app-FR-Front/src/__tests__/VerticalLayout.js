@@ -23,6 +23,7 @@ describe('Given I am connected as Employee', () => {
 })
 describe('Given I am connected as Admin', () => {
   test("Then Icons should not be rendered", () => {
+      ///la disparion des deux icons 
     Object.defineProperty(window, 'localStorage', { value: localStorageMock })
     const user = JSON.stringify({
       type: 'Admin'
