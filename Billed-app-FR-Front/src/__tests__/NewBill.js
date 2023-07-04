@@ -12,8 +12,6 @@ import router from "../app/Router.js";
 import { ROUTES_PATH } from "../constants/routes.js";
 jest.mock("../app/store", () => mockStore)
 
-
-
 describe("Given I am connected as an employee", () => {
   describe("When I am on NewBill Page", () => {
     test("i can upload a png image ", async () => {
@@ -112,8 +110,8 @@ describe("Given I am connected as an employee", () => {
       }))
       expect(fileInput.files[0]).toBeNull()
     })
-    test("tester handleSubmit ", async () => {
-
+    //tester la fonction handleSubmit
+    test("I submit the form ", async () => {
       const spy = jest.spyOn(mockStore, "bills")
       const html = NewBillUI()
       document.body.innerHTML = html

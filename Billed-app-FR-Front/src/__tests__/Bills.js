@@ -15,6 +15,7 @@ $.fn.modal = jest.fn();
 // const onNavigate = jest.fn()
 describe("Given I am connected as an employee", () => {
   describe("When I am on Bills Page", () => {
+    // Ajouter expect expression
     test("Then bill icon in vertical layout should be highlighted", async () => {
       Object.defineProperty(window, 'localStorage', { value: localStorageMock })
       window.localStorage.setItem('user', JSON.stringify({
@@ -28,12 +29,10 @@ describe("Given I am connected as an employee", () => {
       await waitFor(() => screen.getByTestId('icon-window'))
       const windowIcon = screen.getByTestId('icon-window')
       const classIcon = windowIcon.className
-      //to-do write expect expression
       expect(classIcon).toContain('active')
-
     })
-    ///tester
-    test("tester function handeClickNewBill", async () => {
+    ///tester function handeClickNewBill (le titre de la page Bills "Mes notes de frais")
+    test("I can submit a new bill", async () => {
       document.body.innerHTML = BillsUI({ data: bills })
       Object.defineProperty(window, 'localStorage', { value: localStorageMock })
       window.localStorage.setItem('user', JSON.stringify({
@@ -50,8 +49,8 @@ describe("Given I am connected as an employee", () => {
       const titleNewBill = document.querySelector(".content-title").innerHTML.trim()
       expect(titleNewBill).toBe("Mes notes de frais")
     })
-
-    test("quand on clique sur l'icon eye la modale sera afficher", async () => {
+//tester le click sur l'icone eye pour afficher la modale
+    test("Then the modal will be displayed", async () => {
       document.body.innerHTML = BillsUI({ data: bills })
       Object.defineProperty(window, 'localStorage', { value: localStorageMock })
       window.localStorage.setItem('user', JSON.stringify({
@@ -70,7 +69,7 @@ describe("Given I am connected as an employee", () => {
       expect(imgUrl[0]).not.toBeNull()
 
     })
-
+    //trier les dates par ordre
     test("Then bills should be ordered from earliest to latest", () => {
       document.body.innerHTML = BillsUI({ data: bills })
       const dates = screen.getAllByText(/^(19|20)\d\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/i).map(a => a.innerHTML)
@@ -80,8 +79,7 @@ describe("Given I am connected as an employee", () => {
     })
   })
 })
-
-//tests d'integrations Get
+//tests d'integrations Get (s'inspirer des tests d'integrations du "dashboard.js")
 describe("Given I am a user connected as Employee", () => {
   describe("When I navigate to Bills Page", () => {
     test("fetches bills from mock API GET", async () => {
@@ -94,6 +92,7 @@ describe("Given I am a user connected as Employee", () => {
       await waitFor(() => screen.getByTestId("btn-new-bill"))
       expect(screen.getByTestId("btn-new-bill")).toBeTruthy()
     })
+    //traitement des cas d’erreur
     describe("When an error occurs on API", () => {
       beforeEach(() => {
         jest.spyOn(mockStore, "bills")

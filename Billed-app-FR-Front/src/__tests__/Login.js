@@ -78,9 +78,7 @@ describe("Given that I am a user on login page", () => {
       const onNavigate = (pathname) => {
         document.body.innerHTML = ROUTES({ pathname });
       };
-
       let PREVIOUS_LOCATION = "";
-
       // const store = jest.fn(); il retourne une fonction vide qui n'est pas une instance de la classe store
       const store = {
         login: (arg) => Promise.resolve(arg)
@@ -230,6 +228,7 @@ describe("Given that I am a user on login page", () => {
     });
   });
 });
+//test ajouter
 describe("Given that I am a unregistred  user", () => {
   describe("When I do fill with inexistant user and I click on employee button Login In", () => {
     test("Then I should be identified as an  new Employee in app", () => {
