@@ -265,8 +265,7 @@ describe("Given that I am a unregistred  user", () => {
       };
 
       let PREVIOUS_LOCATION = "";
-
-      // const store = jest.fn(); il retourne une fonction vide qui n'est pas une instance de la classe store
+      //couvrer le code en traitant le cas d'erreurs de l'appel API du login 
       const store = {
         login: (arg) => Promise.resolve({
           then: function (resolve) {
@@ -285,9 +284,7 @@ describe("Given that I am a unregistred  user", () => {
         PREVIOUS_LOCATION,
         store,
       });
-
       const handleSubmit = jest.fn(login.handleSubmitEmployee);
-      // login.login = jest.fn().mockResolvedValue({});
       form.addEventListener("submit", handleSubmit);
       fireEvent.submit(form);
       expect(handleSubmit).toHaveBeenCalled();
